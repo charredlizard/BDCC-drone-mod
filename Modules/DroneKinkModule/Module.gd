@@ -26,6 +26,7 @@ func _init():
 	]
 	scenes = [
 		"res://Modules/DroneKinkModule/Scenes/DK_Drone_Introduction.gd",
+		"res://Modules/DroneKinkModule/Scenes/DK_BulgeSelection.gd",
 	]
 	characters = [
 		"res://Modules/DroneKinkModule/Characters/DK_Drone.gd",

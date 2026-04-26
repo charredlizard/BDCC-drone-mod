@@ -3,7 +3,7 @@
 [ext_resource path="res://Player/Player3D/Parts/MeshWithPattern.gd" type="Script" id=1]
 [ext_resource path="res://Player/Player3D/Parts/Part3D.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Inventory/RiggedModels/FlatCage/FlatCage_pattern.png" type="Texture" id=3]
-[ext_resource path="res://Inventory/RiggedModels/FlatCage/FlatCage.png" type="Texture" id=4]
+[ext_resource path="res://Modules/DroneKinkModule/Items/Images/Nulge.png" type="Texture" id=4]
 [ext_resource path="res://Inventory/RiggedModels/FlatCage/FlatCage_overlay.png" type="Texture" id=5]
 
 [sub_resource type="SpatialMaterial" id=14]
@@ -135,7 +135,7 @@ params_cull_mode = 2
 params_depth_draw_mode = 3
 albedo_texture = ExtResource( 4 )
 
-[node name="FlatCage" instance=ExtResource( 2 )]
+[node name="NullBulge" instance=ExtResource( 2 )]
 
 [node name="PenisRigged" type="MeshInstance" parent="." index="0"]
 mesh = SubResource( 15 )
