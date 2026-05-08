@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Player/Player3D/Parts/MeshWithPattern.gd" type="Script" id=1]
 [ext_resource path="res://Player/Player3D/Parts/Part3D.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Inventory/RiggedModels/FlatCage/FlatCage_pattern.png" type="Texture" id=3]
 [ext_resource path="res://Modules/DroneKinkModule/Items/Images/Nulge.png" type="Texture" id=4]
-[ext_resource path="res://Inventory/RiggedModels/FlatCage/FlatCage_overlay.png" type="Texture" id=5]
 
 [sub_resource type="SpatialMaterial" id=14]
 resource_name = "penisDragon.png.002"
@@ -14,7 +13,7 @@ params_cull_mode = 2
 params_depth_draw_mode = 3
 metallic = 1.0
 
-[sub_resource type="ArrayMesh" id=15]
+[sub_resource type="ArrayMesh" id=18]
 resource_name = "DollSkeleton_penisDragonpng009"
 surfaces/0 = {
 "aabb": AABB( -2.17029, 3.01941, -0.000896475, 2.2887, 1.28, 1e-05 ),
@@ -127,7 +126,7 @@ bind/30/bone = -1
 bind/30/pose = Transform( 0.127554, -0.991832, 5.86852e-07, -0.991832, -0.127554, -2.3368e-08, 8.68952e-08, -5.41319e-07, -1, 4.73784, 0.229201, 2.55004e-06 )
 
 [sub_resource type="SpatialMaterial" id=17]
-resource_name = "penisDragon.png.002"
+resource_name = "nullBulge.png"
 flags_transparent = true
 flags_unshaded = true
 vertex_color_use_as_albedo = true
@@ -135,13 +134,13 @@ params_cull_mode = 2
 params_depth_draw_mode = 3
 albedo_texture = ExtResource( 4 )
 
-[node name="NullBulge" instance=ExtResource( 2 )]
+[node name="DK_NullBulge" instance=ExtResource( 2 )]
 
 [node name="PenisRigged" type="MeshInstance" parent="." index="0"]
-mesh = SubResource( 15 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.016 )
+mesh = SubResource( 18 )
 skin = SubResource( 16 )
 material/0 = SubResource( 17 )
 script = ExtResource( 1 )
 bodypartSlot = "penis"
-customOverlay = ExtResource( 5 )
 customSkinPattern = ExtResource( 3 )

@@ -2,8 +2,8 @@ extends Module
 
 func getFlags():
 	return {
+		"PChasMet": flag(FlagType.Bool),
 		"PCisInterested": flag(FlagType.Bool),
-		"PCisConverted": flag(FlagType.Bool),
 		"PCdroneGoal": flag(FlagType.Number),
 		
 		"Drone_Self_Number": flag(FlagType.Number),
@@ -52,7 +52,7 @@ func _init():
 #		"res://Modules/DroneKinkModule/Items/Toys/DK_PleasureBulge.gd",
 	]
 	events = [
-#		"res://Modules/DroneKinkModule/Events/DK_AlexDealEvent.gd",
+		"res://Modules/DroneKinkModule/Events/FindDroneNestEvent.gd",
 	]
 	quests = [
 #		"res://Modules/DroneKinkModule/Quests/DK_DroneArmy.gd",
@@ -72,3 +72,9 @@ func _init():
 	speechModifiers = [
 #		"res://Modules/DroneKinkModule/Speech/DK_DroneSpeech.gd"
 	]
+
+func register():
+	.register()
+	
+	# worlds
+	GlobalRegistry.registerMapFloor("hiddenNest","res://Modules/DroneKinkModule/Floors/HiddenNest.tscn")

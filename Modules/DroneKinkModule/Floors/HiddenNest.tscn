@@ -1,0 +1,80 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Game/World/SubWorld.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Game/World/GameRoom.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Modules/DroneKinkModule/Floors/HiddenNest.gd" type="Script" id=3]
+
+[node name="SubWorld" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+
+[node name="TunnelVent" parent="." index="0" instance=ExtResource( 2 )]
+self_modulate = Color( 0.7, 0.7, 0.7, 1 )
+roomName = "Tunnel"
+roomID = "tunnel_enter"
+roomDescription = "There is a ventilation shaft."
+roomSprite = 3
+roomColor = 8
+gridColor = 7
+
+[node name="Tunnel0" parent="." index="1" instance=ExtResource( 2 )]
+self_modulate = Color( 0.7, 0.7, 0.7, 1 )
+position = Vector2( -64, 0 )
+roomName = "Tunnel"
+roomID = "tunnel_0"
+roomColor = 8
+gridColor = 7
+
+[node name="Tunnel1" parent="." index="2" instance=ExtResource( 2 )]
+self_modulate = Color( 0.7, 0.7, 0.7, 1 )
+position = Vector2( -128, 0 )
+roomName = "Tunnel"
+roomID = "tunnel_1"
+roomColor = 8
+gridColor = 7
+
+[node name="Tunnel2" parent="." index="3" instance=ExtResource( 2 )]
+self_modulate = Color( 0.7, 0.7, 0.7, 1 )
+position = Vector2( -192, 0 )
+roomName = "Tunnel"
+roomID = "tunnel_2"
+roomColor = 8
+gridColor = 7
+
+[node name="NestSE" parent="." index="4" instance=ExtResource( 2 )]
+self_modulate = Color( 0.7, 0.7, 0.7, 1 )
+position = Vector2( -256, 0 )
+roomName = "Drone Nest"
+roomID = "nest_0a"
+roomColor = 8
+gridColor = 7
+
+[node name="NestNE" parent="." index="5" instance=ExtResource( 2 )]
+self_modulate = Color( 0.7, 0.7, 0.7, 1 )
+position = Vector2( -256, -64 )
+roomName = "Drone Nest"
+roomID = "nest_1a"
+roomDescription = "There is a person."
+roomSprite = 1
+roomColor = 8
+gridColor = 7
+
+[node name="NestSW" parent="." index="6" instance=ExtResource( 2 )]
+self_modulate = Color( 0.7, 0.7, 0.7, 1 )
+position = Vector2( -320, 0 )
+roomName = "Drone Nest"
+roomID = "nest_0b"
+roomColor = 8
+gridColor = 7
+
+[node name="NestNW" parent="." index="7" instance=ExtResource( 2 )]
+self_modulate = Color( 0.7, 0.7, 0.7, 1 )
+position = Vector2( -320, -64 )
+roomName = "Drone Nest"
+roomID = "nest_1b"
+roomColor = 8
+gridColor = 7
+
+[connection signal="onEnter" from="TunnelVent" to="." method="_on_TunnelVent_onEnter"]
+[connection signal="onReact" from="TunnelVent" to="." method="_on_TunnelVent_onReact"]
+[connection signal="onEnter" from="NestNE" to="." method="_on_NestNE_onEnter"]
+[connection signal="onReact" from="NestNE" to="." method="_on_NestNE_onReact"]

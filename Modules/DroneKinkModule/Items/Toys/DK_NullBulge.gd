@@ -13,23 +13,32 @@ func getDescription():
 
 func getClothingSlot():
 	var slot = InventorySlot.Anal
-	if (coveredBodyParts["vagina"] == true):
+	if (coveredBodyParts["vagina"]):
 		slot = InventorySlot.Vagina
-	elif (coveredBodyParts["penis"] == true):
+	elif (coveredBodyParts["penis"]):
 		slot = InventorySlot.Penis
 	return slot
 
 func getRequiredBodypart():
 	var slot = BodypartSlot.Anus
-	if (coveredBodyParts["vagina"] == true):
+	if (coveredBodyParts["vagina"]):
 		slot = BodypartSlot.Vagina
-	elif (coveredBodyParts["penis"] == true):
+	elif (coveredBodyParts["penis"]):
 		slot = BodypartSlot.Penis
 	return slot
 
-func getTakeOffScene():
-	return "RestraintTakeOffNopeScene"
-	
+#func blocksInventorySlots():
+#	var slots = []
+#
+#	if(coveredBodyParts["penis"]):
+#		slots.append(InventorySlot.Penis)
+#	if(coveredBodyParts["vagina"]):
+#		slots.append(InventorySlot.Vagina)
+#	if(coveredBodyParts["anus"]):
+#		slots.append(InventorySlot.Anal)
+#
+#	return slots
+
 func getBuffs():
 	var buffList = [buff(Buff.SensitivityGainBuff, [25.0])]
 	
@@ -41,7 +50,10 @@ func getBuffs():
 		buffList.push_front(buff(Buff.ChastityPenisBuff))
 	
 	return buffList
-	
+
+func getTakeOffScene():
+	return "RestraintTakeOffNopeScene"
+
 func getPossibleActions():
 	if(!isWornByWearer()):
 		return [{
@@ -70,8 +82,8 @@ func isRestraint():
 	return true
 
 func generateRestraintData():
-	restraintData = load("res://Modules/DroneKinkModule/Items/RestraintBulge.gd").new()
-	restraintData.setLevel(7)
+	restraintData = preload("res://Modules/DroneKinkModule/Items/RestraintBulge.gd").new()
+	restraintData.setLevel(3)
 	
 func getForcedOnMessage(isPlayer = true):
 	if(isPlayer):
@@ -79,23 +91,14 @@ func getForcedOnMessage(isPlayer = true):
 	else:
 		return getAStackNameCapitalize()+" was forced over {receiver.nameS} genitals." + ((" It quickly spreads to cover their "+getCoveredBodyPartsString()+".") if hasCovered() else "")
 
-func saveData():
-	var data = .saveData()
-	data["coveredBodyParts"] = coveredBodyParts
-	return data
-	
-func loadData(_data):
-	.loadData(_data)
-	coveredBodyParts = SAVE.loadVar(_data, "coveredBodyParts", "")
-
-func getUnriggedParts(_character):
+func getRiggedParts(_character):
 	return {
-		"bulge": ["res://Modules/DroneKinkModule/Items/Toys/DK_NullBulge.tscn"],
+		"chastity_cage": "res://Modules/DroneKinkModule/Items/Toys/DK_NullBulge.tscn",
 	}
 
 func getHidesParts(_character):
 	var parts = {}
-	if(coveredBodyParts["penis"]==true):
+	if(coveredBodyParts["penis"]):
 		parts[BodypartSlot.Penis] = true
 	return parts
 
@@ -108,10 +111,18 @@ func getInventoryImage():
 	return "res://Modules/DroneKinkModule/Items/Images/Icons/NulgeIcon.png"
 
 func getAIForceItemWeight(_whoForcesNpc, _targetNpc):
-	if(_whoForcesNpc == null):
-		return 0.0
-	var hypnosisValue = _whoForcesNpc.getFetishHolder().getFetishValue(Fetish.HypnosisHypnotist)
-	return hypnosisValue * 1.0
+	return 0
+
+func saveData():
+	var data = .saveData()
+	data["coveredBodyParts"] = coveredBodyParts
+	return data
+	
+func loadData(_data):
+	.loadData(_data)
+	coveredBodyParts = SAVE.loadVar(_data, "coveredBodyParts", {"penis": true, "vagina": false, "anus": false})
+
+# Bulge specific functions
 
 func getCoveredBodyParts():
 	var partsArray: Array = []
